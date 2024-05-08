@@ -100,6 +100,7 @@ class DirectUploadProvider extends React.Component<Props, State> {
     [string]: ActiveStorageFileUpload,
   }) =>
     this.setState(({ fileUploads }) => ({
+      uploading: false,
       fileUploads: { ...fileUploads, ...fileUpload },
     }))
 

@@ -87,9 +87,13 @@ class DirectUploadProvider extends React.Component<Props, State> {
 
     this.setState({ uploading: true })
 
-    const signedIds = await Promise.all(
+    const response = await Promise.allSettled(
       this.uploads.map(upload => upload.start())
     )
+
+    const signedIds = (response || [])
+      .filter(({ status }) => status === 'fulfilled')
+      .map(({ value }) => value)
 
     this.props.onSuccess(signedIds)
     this.uploads = []

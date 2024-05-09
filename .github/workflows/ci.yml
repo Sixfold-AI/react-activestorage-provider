@@ -1,0 +1,27 @@
+name: Sixfold - React Active Storage Provider CI
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Install Node packages
+        run: yarn install --immutable
+      - name: Lint JS code
+        run: yarn lint
+      - name: Format JS code
+        run: yarn format
+      - name: Build JS code
+        run: yarn build
+      - name: Run tests
+        run: yarn test

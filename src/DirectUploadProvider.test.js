@@ -109,4 +109,15 @@ describe('DirectUploadProvider', () => {
     await tree.props.handleUpload([file])
     expect(onSuccess).toHaveBeenCalledWith(['signedId'])
   })
+
+  it('is ready for another upload when an error happens', async () => {
+    fetch.mockRejectedValue(new Error('Fetch error'))
+
+    await tree.props.handleUpload([file])
+    expect(component.getInstance().state.uploading).toBe(false)
+
+    // Try to upload again
+    await tree.props.handleUpload([file])
+    expect(component.getInstance().state.uploading).toBe(false)
+  })
 })

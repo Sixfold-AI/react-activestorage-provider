@@ -38,12 +38,6 @@ _If there are no dependencies, write "None"._
 
 _Describe any steps that need to be taken to update the development environment after this PR is merged. For example, if you added a new environment variable, describe how to set it. If you added a new database migration, describe how to run it. If you changed a dependency, remind us to run Bundler or Yarn._
 
-_Below is an example:_
-
-> 1. Stop `bin/dev`
-> 2. Run `bundle install`
-> 3. Run `rails db:migrate`
-> 4. Restart `bin/dev`
 
 _If no migration steps are required, write "None"._
 

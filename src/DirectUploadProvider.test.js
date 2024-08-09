@@ -3,9 +3,9 @@
  */
 
 import React from 'react'
-import renderer from 'react-test-renderer'
 import DirectUploadProvider from './DirectUploadProvider'
 import Upload from './Upload'
+import { render, screen } from '@testing-library/react'
 
 global.fetch = require('jest-fetch-mock')
 
@@ -34,11 +34,11 @@ const uploadOptions = {
 }
 
 function renderComponent(props) {
-  return renderer.create(
+  return render(
     <DirectUploadProvider
       {...uploadOptions}
       onSuccess={onSuccess}
-      render={props => <div {...props} />}
+      render={props => <div id="direct-upload-provider" {...props} />}
       {...props}
     />
   )
@@ -50,11 +50,10 @@ beforeEach(() => {
 })
 
 describe('DirectUploadProvider', () => {
-  let component, tree
+  let component
 
   beforeEach(() => {
     component = renderComponent()
-    tree = component.toJSON()
   })
 
   it('updates the UI with upload progress', () => {
